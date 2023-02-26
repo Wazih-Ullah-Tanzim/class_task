@@ -66,6 +66,7 @@ Route::post('admin/user_login', [AuthController::class, 'userLogin']);
 
 Route::middleware(['CheckLoggedIn'])->group(function () {
     Route::get('admin/users',[UserController::class, 'allUsers']);
+    Route::resource('admin/department', DepartmentController::class);
     Route::get('admin/approve/{userId}', [UserController::class, 'approve']);
     Route::middleware(['IsStudent'])->group(function () {
        Route::get('admin/my-courses', function(){
@@ -79,7 +80,7 @@ Route::middleware(['CheckLoggedIn'])->group(function () {
     });
 });
 
-Route::resource('admin/department', DepartmentController::class);
+
 
 Route::resource('admin/section', SectionController::class);
 Route::resource('admin/course', CourseController::class);
